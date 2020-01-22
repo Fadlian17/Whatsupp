@@ -1,62 +1,68 @@
+import React from 'react';
 import { AppLoading } from 'expo';
-import { Asset } from 'expo-asset';
+import { Container, Header, Tab, Tabs, TabHeading, Icon, Text, Right, Button, Left} from 'native-base';
 import * as Font from 'expo-font';
-import React, { useState } from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import Tab0 from './pages/Camera';
+import Tab1 from './pages/Chat';
+import Tab2 from './pages/Status';
+import Tab3 from './pages/Calls';
 
-import AppNavigator from './navigation/AppNavigator';
 
-export default function App(props) {
-  const [isLoadingComplete, setLoadingComplete] = useState(false);
+export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isReady: false,
+    };
+  }
 
-  if (!isLoadingComplete && !props.skipLoadingScreen) {
+  async componentDidMount() {
+    await Font.loadAsync({
+      Roboto: require('native-base/Fonts/Roboto.ttf'),
+      Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
+      ...Ionicons.font,
+    });
+    this.setState({ isReady: true });
+  }
+
+  render() {
+    if (!this.state.isReady) {
+      return <AppLoading />;
+    }
+
     return (
-      <AppLoading
-        startAsync={loadResourcesAsync}
-        onError={handleLoadingError}
-        onFinish={() => handleFinishLoading(setLoadingComplete)}
-      />
-    );
-  } else {
-    return (
-      <View style={styles.container}>
-        {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-        <AppNavigator />
-      </View>
+      <Container style={{backgroundColor:"#075E54"}}>
+        
+        <Header style={{backgroundColor: "#075E54", marginTop: 5, marginBottom: 15}} hasTabs>
+          <Left>
+            <Text style={{color: "white", fontSize: 20, fontWeight: 'bold'}}> Apa Kabar</Text>
+          </Left>
+          <Right style={{marginTop: 25}}>
+            <Button transparent>
+              <Icon name='search' />
+            </Button>
+            
+            <Button transparent>
+              <Icon name='more' />
+            </Button>
+          </Right>
+        </Header>
+        <Tabs prerenderingSiblingsNumber={1} initialPage={1} tabContainerStyle={{elevation:0}}>
+          <Tab heading={ <TabHeading  style={{backgroundColor: "#075E54"}} ><Icon style={{fontSize:25}} name="camera" /></TabHeading>} >
+            <Tab0 />
+          </Tab>
+          <Tab  heading={ <TabHeading  style={{backgroundColor: "#075E54"}}><Text style={{ fontWeight: 'bold'}}>CHAT</Text></TabHeading>}>
+            <Tab1 />
+          </Tab>
+          <Tab heading={ <TabHeading  style={{backgroundColor: "#075E54"}}><Text style={{fontWeight: 'bold'}}>STATUS</Text></TabHeading>}>
+            <Tab2 />
+          </Tab>
+          <Tab heading={ <TabHeading style={{backgroundColor: "#075E54"}}><Text style={{fontWeight: 'bold'}}>CALLS</Text></TabHeading>}>
+            <Tab3 />
+          </Tab>
+        </Tabs>
+      </Container>
     );
   }
 }
-
-async function loadResourcesAsync() {
-  await Promise.all([
-    Asset.loadAsync([
-      require('./assets/images/robot-dev.png'),
-      require('./assets/images/robot-prod.png'),
-    ]),
-    Font.loadAsync({
-      // This is the font that we are using for our tab bar
-      ...Ionicons.font,
-      // We include SpaceMono because we use it in HomeScreen.js. Feel free to
-      // remove this if you are not using it in your app
-      'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
-    }),
-  ]);
-}
-
-function handleLoadingError(error) {
-  // In this case, you might want to report the error to your error reporting
-  // service, for example Sentry
-  console.warn(error);
-}
-
-function handleFinishLoading(setLoadingComplete) {
-  setLoadingComplete(true);
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-});

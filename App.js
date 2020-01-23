@@ -34,7 +34,7 @@ export default class App extends React.Component {
     return (
       <Container style={{backgroundColor:"#075E54"}}>
         
-        <Header style={{backgroundColor: "#075E54", marginTop: 5, marginBottom: 15}} hasTabs>
+        <Header style={{backgroundColor: "#075E54", marginTop: 35, marginBottom: 10}} hasTabs>
           <Left>
             <Text style={{color: "white", fontSize: 20, fontWeight: 'bold'}}> Apa Kabar</Text>
           </Left>

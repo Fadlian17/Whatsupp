@@ -36,6 +36,21 @@ export default class ListAvatarExample extends Component {
                 
               </Right>
             </ListItem>
+            <ListItem avatar>
+              <Left>
+                <Thumbnail source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/5/51/David_Luiz_at_Baku_before_2019_UEFA_Europe_League_Final.jpg' }} />
+              </Left>
+              <Body>
+                <Text>Agen Junaedi Bakar</Text>
+                <Text note style={{marginRight: 7}}><Icon name="undo" style={{color: "green"}} />Yesterday, 15:30</Text>
+              </Body>
+              <Right>
+                <Button transparent>
+                    <Icon name="call" style={{color: 'red'}}/>
+                </Button>
+                
+              </Right>
+            </ListItem>
           </List>
         </Content>
 

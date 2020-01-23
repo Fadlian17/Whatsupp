@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Content, List, ListItem, Text, Separator, Left, Body, Right, Thumbnail} from 'native-base';
+
 export default class ListAvatarExample extends Component {
   render() {
     return (
@@ -8,7 +9,7 @@ export default class ListAvatarExample extends Component {
           <List style={{marginBottom: 10}} >
             <ListItem avatar>
               <Left>
-                <Thumbnail source={{ uri: 'https://yt3.ggpht.com/a/AGF-l7-kegmCfGtH1upKmi2WxYMezKQrhrPXeTCAsA=s288-c-k-c0xffffffff-no-rj-mo' }} />
+                <Thumbnail source={{ uri: 'https://yt3.ggpht.com/a/AGF-l7-kegmCfGtH1upKmi2WxYMezKQrhrPXeTCAsA=s288-c-k-c0xffffffff-no-rj-mo'}}/>
               </Left>
               <Body >
                 <Text>Status Saya</Text>

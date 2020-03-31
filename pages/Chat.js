@@ -5,7 +5,7 @@ export default class ListAvatarExample extends Component {
     return (
       <Container>
         <Content>
-          <List>
+          <List> 
             <ListItem avatar>
               <Left>
                 <Thumbnail source={{ uri: 'https://www.biography.com/.image/t_share/MTY2MzU3Nzk2OTM2MjMwNTkx/elon_musk_royal_society.jpg' }} />
